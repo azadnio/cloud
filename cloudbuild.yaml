@@ -1,9 +1,10 @@
     steps:
     - name: 'gcr.io/cloud-builders/docker'
-      args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/quickstart-image', '.' ]
+      args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '.' ]
       
     - name: 'gcr.io/cloud-builders/docker'
       args: ["push", "gcr.io/$PROJECT_ID/quickstart-image"]
+      
       
     #images:
     #- 'gcr.io/$PROJECT_ID/quickstart-image'
