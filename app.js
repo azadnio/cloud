@@ -1,7 +1,7 @@
 const http = require('http')
 const port = 3000
 
-var br = "VER";
+var br = "_VER_";
 
 const requestHandler = (request, response) => {
   console.log(request.url)
