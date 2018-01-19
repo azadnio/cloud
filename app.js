@@ -5,7 +5,7 @@ var br = "_VER_";
 
 const requestHandler = (request, response) => {
   console.log(request.url)
-  response.end('Hello Node.js Server!')
+  response.end(`Hello Node.js Server! branch: ${br}`)
 }
 
 const server = http.createServer(requestHandler)
