@@ -6,12 +6,6 @@
       args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image']
 
     - name: 'gcr.io/cloud-builders/gcloud'
-      args: ['config', 'set', 'project', 'azad-test']
-    
-    - name: 'gcr.io/cloud-builders/gcloud'
-      args: ['container', 'clusters', 'create', 'azad-test-cluster', '--zone=asia-south1-a']
-
-    - name: 'gcr.io/cloud-builders/gcloud'
       args: ['container', 'clusters', 'get-credentials', 'azad-test-cluster', '--zone=asia-south1-a']
 
     - name: 'gcr.io/cloud-builders/kubectl'
