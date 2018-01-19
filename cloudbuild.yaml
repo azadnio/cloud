@@ -11,7 +11,7 @@
     - name: 'gcr.io/cloud-builders/kubectl'
       args: ['run', 'hello-server', '--image', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '--port','3000']
 
-    - name: 'gcr.io/cloud-builders/gcloud'
+    - name: 'gcr.io/cloud-builders/kubectl'
       args: ['expose', 'deployment', 'hello-server', '--type', '"LoadBalancer"']
       
     #images:
