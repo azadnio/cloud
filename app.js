@@ -1,6 +1,8 @@
 const http = require('http')
 const port = 3000
 
+var br = "VER";
+
 const requestHandler = (request, response) => {
   console.log(request.url)
   response.end('Hello Node.js Server!')
@@ -13,5 +15,5 @@ server.listen(port, (err) => {
     return console.log('something bad happened', err)
   }
 
-  console.log(`server is listening on ${port}`)
+  console.log(`server is listening on ${port} brach: ${br}`);
 })

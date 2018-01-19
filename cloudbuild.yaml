@@ -1,4 +1,11 @@
     steps:
+    - name: 'gcr.io/cloud-builders/gcloud'
+      entrypoint: 'bash'
+      args:
+      - '-c'
+      - |
+      sed -i "s/_VER_/$BRANCH_NAME/" ./app.js
+
     - name: 'gcr.io/cloud-builders/docker'
       args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '.' ]
       
