@@ -3,8 +3,25 @@
       args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '.' ]
       
     - name: 'gcr.io/cloud-builders/docker'
-      args: ["push", "gcr.io/$PROJECT_ID/quickstart-image"]
-      
+      args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image']
+
+    - name: 'gcr.io/cloud-builders/gcloud'
+      args: ['config', 'set', 'project', 'azad-test']
+
+    - name: 'gcr.io/cloud-builders/gcloud'
+      args: ['config', 'set', 'compute/zone', '--zone=asia-south1-a']
+    
+    - name: 'gcr.io/cloud-builders/gcloud'
+      args: ['container', 'clusters', 'create', 'azad-test-cluster']
+
+    - name: 'gcr.io/cloud-builders/gcloud'
+      args: ['container', 'clusters', 'get-credentials', 'azad-test-cluster']
+
+    - name: 'gcr.io/cloud-builders/kubectl'
+      args: ['run', 'hello-server', '--image', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '--port','3000']
+
+    - name: 'gcr.io/cloud-builders/gcloud'
+      args: ['expose', 'deployment', 'hello-server', '--type', '"LoadBalancer"']
       
     #images:
     #- 'gcr.io/$PROJECT_ID/quickstart-image'
