@@ -5,6 +5,7 @@
         - '-c'
         - |
           if [$BRANCH_NAME = "master"]
+          then
             sed -i "s/_VER_/minified/" app.js
             mv Dockerfile.min Dockerfile
           else
