@@ -4,7 +4,7 @@
       args:
         - '-c'
         - |
-          if [$BRANCH_NAME = "master"]
+          if [ $BRANCH_NAME = master ]
           then
             sed -i "s/_VER_/minified/" src/app.js
             mv Dockerfile.min Dockerfile
