@@ -4,7 +4,7 @@
       args:
         - '-c'
         - |
-          echo PROJECT_ID
+          echo project is ${PROJECT_ID}
           if [ $BRANCH_NAME = master ]
           then
             sed -i "s/_VER_/minified/" src/app.js
