@@ -6,10 +6,10 @@
         - |
           if [$BRANCH_NAME = "master"]
           then
-            sed -i "s/_VER_/minified/" app.js
+            sed -i "s/_VER_/minified/" src/app.js
             mv Dockerfile.min Dockerfile
           else
-            sed -i "s/_VER_/UN minified/" app.js
+            sed -i "s/_VER_/UN minified/" src/app.js
             mv Dockerfile.nomin Dockerfile
           fi
           
@@ -27,7 +27,7 @@
       args: ['run', 'hello-server2', '--image', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '--port','3000']
 
     - name: 'gcr.io/cloud-builders/kubectl'
-      args: ['expose', 'deployment', 'hello-server2', '--type', 'LoadBalancer']
+      args: ['expose', 'deployment', 'hello-server', '--type', 'LoadBalancer']
       
     #images:
     #- 'gcr.io/$PROJECT_ID/quickstart-image'
