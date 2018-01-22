@@ -26,7 +26,7 @@ spec:
         app: hello-server2
     spec:
       containers:
-      - image: gcr.io/PROJECT_ID/gcptest-image:IMAGE_TAG
+      - image: gcr.io/PROJECT_ID/quickstart-image:IMAGE_TAG
         imagePullPolicy: Always
         name: hello-server2
         ports:
