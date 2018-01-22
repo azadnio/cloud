@@ -31,5 +31,3 @@ spec:
         name: hello-server2
         ports:
         - containerPort: 3000
-        env:
-          livenessProbe:
