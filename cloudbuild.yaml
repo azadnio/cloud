@@ -4,6 +4,7 @@
       args:
         - '-c'
         - |
+          echo project is ${PROJECT_ID}
           if [ $BRANCH_NAME = master ]
           then
             sed -i "s/_VER_/minified/" src/app.js
@@ -31,7 +32,7 @@
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           if [ $BRANCH_NAME = master ]
           then
-            export CLOUDSDK_CONTAINER_CLUSTER=azad-test-master
+            export CLOUDSDK_CONTAINER_CLUSTER=charlie-test-master	
           else
             export CLOUDSDK_CONTAINER_CLUSTER=azad-test-cluster
           fi
