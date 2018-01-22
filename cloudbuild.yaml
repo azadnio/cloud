@@ -30,4 +30,4 @@
 
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a 
           export CLOUDSDK_CONTAINER_CLUSTER=azad-test-cluster 
-          /builder/kubectl.bash apply -f deploy.yaml 
+          /builder/kubectl.bash apply -f deploy.yaml
