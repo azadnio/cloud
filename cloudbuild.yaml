@@ -4,7 +4,14 @@
       args:
         - '-c'
         - |
-          sed -i "s/_VER_/$BRANCH_NAME/" app.js
+          if [$BRANCH_NAME = "master"]
+            sed -i "s/_VER_/minified/" app.js
+            mv Dockerfile.min Dockerfile
+          else
+            sed -i "s/_VER_/UN minified/" app.js
+            mv Dockerfile.nomin Dockerfile
+          fi
+          
 
     - name: 'gcr.io/cloud-builders/docker'
       args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '.' ]

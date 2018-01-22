@@ -1,0 +1,9 @@
+{
+  "name": "minify-node--formsapp-build",
+  "version": "1.0.0",
+  "description": "minify-node--formsapp-build",
+  "dependencies": {
+    "html-minifier": "^3.5.2",
+    "uglify-js": "^3.0.24"
+  }
+}

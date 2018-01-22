@@ -1,0 +1,18 @@
+FROM node:7.2.0-alpine
+RUN mkdir /app
+COPY . /app
+
+#minify src floder
+WORKDIR /app/minify
+RUN npm install
+RUN node app.js
+
+#delete src folder & rename srcmin to src
+WORKDIR /app
+RUN rm -r src
+RUN mv srcmin src
+
+RUN npm install
+WORKDIR /app/src
+EXPOSE 8080
+CMD node app.js
