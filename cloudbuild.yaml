@@ -22,7 +22,8 @@
     
     - name: 'gcr.io/cloud-builders/kubectl' 
       entrypoint: 'bash' 
-      args: - '-c' 
+      args: 
+        - '-c'
         - |
           sed -i "s/IMAGE_TAG/$BRANCH_NAME-$REVISION_ID/" deploy.yaml
           sed -i "s/PROJECT_ID/${PROJECT_ID}/" deploy.yaml
