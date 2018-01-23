@@ -9,9 +9,11 @@
           then
             sed -i "s/_VER_/minified/" src/app.js
             mv Dockerfile.min Dockerfile
+            echo "charlie-test-master" > cat cluster.txt
           else
             sed -i "s/_VER_/UN minified/" src/app.js
             mv Dockerfile.nomin Dockerfile
+            echo "azad-test-cluster" > cat cluster.txt
           fi
           
 
@@ -30,10 +32,5 @@
           sed -i "s/PROJECT_ID/${PROJECT_ID}/" deploy.yaml
 
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
-          if [ $BRANCH_NAME = master ]
-          then
-            export CLOUDSDK_CONTAINER_CLUSTER=charlie-test-master	
-          else
-            export CLOUDSDK_CONTAINER_CLUSTER=azad-test-cluster
-          fi
+          export CLOUDSDK_CONTAINER_CLUSTER= cat cluster.txt
           /builder/kubectl.bash apply -f deploy.yaml
