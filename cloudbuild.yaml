@@ -34,9 +34,9 @@
           #set the namespce
           if [ $BRANCH_NAME = staging ]
           then
-            export NS="staging"
+            NS="staging"
           else
-            export NS="default"
+            NS="default"
           fi
 
           echo cluster is `cat cluster.txt`
