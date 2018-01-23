@@ -31,8 +31,6 @@
           sed -i "s/IMAGE_TAG/$BRANCH_NAME-$REVISION_ID/" deploy.yaml
           sed -i "s/PROJECT_ID/${PROJECT_ID}/" deploy.yaml
 
-          echo cluster is `cat cluster.txt`
-
           #set the namespce
           if [ $BRANCH_NAME = staging ]
           then
@@ -40,6 +38,9 @@
           else
             export NS=default
           fi
+
+          echo cluster is `cat cluster.txt`
+          echo namespace is ${NS}
 
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
