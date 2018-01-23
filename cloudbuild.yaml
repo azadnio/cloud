@@ -11,11 +11,10 @@
             mv Dockerfile.min Dockerfile
             echo "charlie-test-master" > cluster.txt
           else
-            sed -i "s/_VER_/UN minified/" src/app.js
+            sed -i "s/_VER_/UN minified $BRANCH_NAME/" src/app.js
             mv Dockerfile.nomin Dockerfile
             echo "azad-test-cluster" > cluster.txt
-          fi
-                    
+          fi                    
 
     - name: 'gcr.io/cloud-builders/docker'
       args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '.' ]
@@ -23,14 +22,25 @@
     - name: 'gcr.io/cloud-builders/docker'
       args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image']
     
-    - name: 'gcr.io/cloud-builders/kubectl' 
+    - name: 'gcr.io/cloud-builders/kubectl'
       entrypoint: 'bash' 
       args: 
         - '-c'
         - |
           sed -i "s/IMAGE_TAG/$BRANCH_NAME-$REVISION_ID/" deploy.yaml
           sed -i "s/PROJECT_ID/${PROJECT_ID}/" deploy.yaml
+
+          #set the namespce
+          if [ $BRANCH_NAME = staging ]
+          then
+            echo "staging" > namespace.txt
+          else
+            echo "default" > namespace.txt
+          fi
+
           echo cluster is `cat cluster.txt`
+          echo namespace id `cat namespace.txt`
+
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
-          /builder/kubectl.bash apply -f deploy.yaml
+          /builder/kubectl.bash apply -f deploy.yaml --namespace=`cat namespace.txt`
