@@ -11,7 +11,7 @@
             mv Dockerfile.min Dockerfile
             echo "charlie-test-master" > cluster.txt
           else
-            sed -i "s/_VER_/UN minified/" src/app.js
+            sed -i "s/_VER_/UN minified $BRANCH_NAME/" src/app.js
             mv Dockerfile.nomin Dockerfile
             echo "azad-test-cluster" > cluster.txt
           fi                    
