@@ -23,14 +23,24 @@
     - name: 'gcr.io/cloud-builders/docker'
       args: ['push', 'gcr.io/$PROJECT_ID/quickstart-image']
     
-    - name: 'gcr.io/cloud-builders/kubectl' 
+    - name: 'gcr.io/cloud-builders/kubectl'
       entrypoint: 'bash' 
       args: 
         - '-c'
         - |
           sed -i "s/IMAGE_TAG/$BRANCH_NAME-$REVISION_ID/" deploy.yaml
           sed -i "s/PROJECT_ID/${PROJECT_ID}/" deploy.yaml
+
           echo cluster is `cat cluster.txt`
+
+          #namespce
+          if [ $BRANCH_NAME = staging ]
+          then
+            export NS=staging
+          else
+            export NS=default
+          if
+
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
-          /builder/kubectl.bash apply -f deploy.yaml
+          /builder/kubectl.bash apply -f deploy.yaml --namespace=NS
