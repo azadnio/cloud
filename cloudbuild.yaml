@@ -33,7 +33,7 @@
 
           echo cluster is `cat cluster.txt`
 
-          #namespce
+          #set the namespce
           if [ $BRANCH_NAME = staging ]
           then
             export NS=staging
