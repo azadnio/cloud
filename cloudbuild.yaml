@@ -33,14 +33,14 @@
           #set the namespce
           if [ $BRANCH_NAME = staging ]
           then
-            export NAME_SPACE="staging"
+            export NAME_SPACE=staging
           else
-            export NAME_SPACE="default"
+            export NAME_SPACE=default
           fi
 
           echo cluster is `cat cluster.txt`
-          echo namespace id ${NAME_SPACE}
+          echo namespace id $NAME_SPACE
 
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
-          /builder/kubectl.bash apply -f deploy.yaml --namespace=${NAME_SPACE}
+          /builder/kubectl.bash apply -f deploy.yaml --namespace=$NAME_SPACE
