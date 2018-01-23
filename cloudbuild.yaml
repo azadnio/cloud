@@ -39,7 +39,7 @@
             export NS=staging
           else
             export NS=default
-          if
+          fi
 
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
