@@ -9,11 +9,11 @@
           then
             sed -i "s/_VER_/minified/" src/app.js
             mv Dockerfile.min Dockerfile
-            echo "charlie-test-master" > cat cluster.txt
+            echo "charlie-test-master" > cluster.txt
           else
             sed -i "s/_VER_/UN minified/" src/app.js
             mv Dockerfile.nomin Dockerfile
-            echo "azad-test-cluster" > cat cluster.txt
+            echo "azad-test-cluster" > cluster.txt
           fi
           
 
