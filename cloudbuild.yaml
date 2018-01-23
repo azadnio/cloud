@@ -15,7 +15,7 @@
             mv Dockerfile.nomin Dockerfile
             echo "azad-test-cluster" > cluster.txt
           fi
-          
+          echo cluster is `cat cluster.txt`          
 
     - name: 'gcr.io/cloud-builders/docker'
       args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '.' ]
