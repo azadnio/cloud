@@ -9,11 +9,13 @@
           then
             sed -i "s/_VER_/minified/" src/app.js
             mv Dockerfile.min Dockerfile
+            echo "charlie-test-master" > cluster.txt
           else
             sed -i "s/_VER_/UN minified/" src/app.js
             mv Dockerfile.nomin Dockerfile
+            echo "azad-test-cluster" > cluster.txt
           fi
-          
+                    
 
     - name: 'gcr.io/cloud-builders/docker'
       args: [ 'build', '-t', 'gcr.io/${PROJECT_ID}/quickstart-image:$BRANCH_NAME-$REVISION_ID', '.' ]
@@ -28,12 +30,7 @@
         - |
           sed -i "s/IMAGE_TAG/$BRANCH_NAME-$REVISION_ID/" deploy.yaml
           sed -i "s/PROJECT_ID/${PROJECT_ID}/" deploy.yaml
-
+          echo cluster is `cat cluster.txt`
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
-          if [ $BRANCH_NAME = master ]
-          then
-            export CLOUDSDK_CONTAINER_CLUSTER=charlie-test-master	
-          else
-            export CLOUDSDK_CONTAINER_CLUSTER=azad-test-cluster
-          fi
+          export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
           /builder/kubectl.bash apply -f deploy.yaml
