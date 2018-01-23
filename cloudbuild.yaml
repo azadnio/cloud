@@ -40,6 +40,7 @@
           fi
 
           echo cluster is `cat cluster.txt`
+          echo namespace id $NS
 
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
