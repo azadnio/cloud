@@ -34,13 +34,12 @@
           #set the namespce
           if [ $BRANCH_NAME = staging ]
           then
-            export NS=staging
+            export NS="staging"
           else
-            export NS=default
+            export NS="default"
           fi
 
           echo cluster is `cat cluster.txt`
-          echo namespace is ${NS}
 
           export CLOUDSDK_COMPUTE_ZONE=asia-south1-a
           export CLOUDSDK_CONTAINER_CLUSTER=`cat cluster.txt`
